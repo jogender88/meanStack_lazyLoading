@@ -1,0 +1,21 @@
+#table1{
+    position: relative;
+}
+#back{
+    background-image: url("../assets/Images/back2.jpeg");
+    background-repeat: no-repeat;
+    width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+.navbar{
+    margin-bottom: 0px !important;
+}
+ul#Navigation .active{
+    border-color: white;
+    border-left-color: black; 
+    border-top-color: black;
+    color: white; 
+    background-color: #adadad;
+}

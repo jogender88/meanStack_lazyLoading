@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="table-responsive">
+    
+    <table class="table table-striped ">
+     
+      <thead>
+        <tr style="text-align: center;background-color: darkgray">
+          <td>Id</td>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Mobile</td>
+          <td>Address</td>
+          <td>Delete</td>
+        </tr>
+      </thead>
+     
+      <tbody>
+        <tr *ngFor="let dd of pagedItems;let ind = index" style="text-align: center">
+          <td>{{ind + 1}}</td>
+          <td>{{dd.name}}</td>
+          <td>{{dd.email}}</td>
+          <td>{{dd.phn}}</td>
+          <td>{{dd.address}}</td>
+          <td><button type="button" class="btn btn-danger" (click)="admindeleteUser(dd._id)">Delete</button> </td>
+        </tr>
+    
+      </tbody>
+    
+    </table>
+    
+    <ul *ngIf="pager.pages && pager.pages.length" style="float: right" class="pagination">
+
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+      </li>
+    
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+      </li>
+
+      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+      </li>
+
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+      </li>
+
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+      </li>
+
+    </ul>
+  </div>
+</div>

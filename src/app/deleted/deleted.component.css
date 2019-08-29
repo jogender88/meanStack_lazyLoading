@@ -1,0 +1,6 @@
+.table-striped>tbody>tr:nth-of-type(even){
+    background-color: gainsboro;
+}
+.table-striped>tbody>tr:hover{
+    background-color: rgb(248, 174, 174);;
+}
