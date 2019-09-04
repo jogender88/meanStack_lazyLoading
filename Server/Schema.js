@@ -1,5 +1,15 @@
 var mongoose = require('mongoose');
-
+var otherSchema=new mongoose.Schema({
+        itemName: {
+            type: String
+        },
+        description: {
+            type: String
+        },
+        price: {
+            type: String
+        }
+})
 var UserSchema = new mongoose.Schema({
     name: {
         type: String, trim: true,
@@ -15,12 +25,13 @@ var UserSchema = new mongoose.Schema({
     },
     address: {
         type: String, trim: true,
-        required: true
+        required: true,
     },
     flag: {
         type: Number, default: 1,
         required: true
     },
+    other: [otherSchema]
 });
 
 var user = mongoose.model('users', UserSchema);

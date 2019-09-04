@@ -1,6 +1,7 @@
 <div class="container">
   <div>
     <h4>{{msg}}</h4>
+  
     <form class="" [formGroup]="userForm" (ngSubmit)="onSave(userForm.value)">
       <input type="hidden" class="fortextbox" name="id" placeholder="id" formControlName="id">
      
@@ -42,13 +43,36 @@
         </div>
       </div>
 
+      <!-- <form [formGroup]="addForm"> -->
+      <div formArrayName="other" *ngFor="let item of userForm.get('other').controls;let i=index;">
+        <div [formGroupName]="i">
+          <div class="form-group">
+          <input type="text" class="fortextbox" formControlName="itemName" placeholder="Item name">
+        </div>
+        <div class="form-group">
+   
+          <input type="text" class="fortextbox" formControlName="description" placeholder="Item Description">
+          </div>
+          <div class="form-group">
+            <input type="text" class="fortextbox" formControlName="price" placeholder="Item Price">
+            </div>
+        </div>
+      
+      </div>
+      <button type="button" class="btn btn-success" (click)="addItem()"> Addnew</button>
+      <button style="float: right" type="button" class="btn btn-success" (click)="removeItem(i)"> Remove</button>
+  
+      <!-- </form> -->
+      <br>
+      <br>
+
       <input id="submitbtn" type="submit" class="forsubmit" value="{{valbutton}}">
       <!--[disabled]="!userForm.valid"-->
     </form>
   </div>
   <br>
 
-  <div class="table-responsive">
+  <div class="table-responsive" *ngIf="pagedItems">
     <input type="text" class="form-control" style="position:relative" placeholder="Search" [(ngModel)]="searchText">
     <table class="table table-striped">
 
@@ -103,3 +127,22 @@
     </ul>
   </div>
 </div>
+
+<!-- <form class="" [formGroup]="addForm">
+  <div formArrayName="items" *ngFor="let item of addForm.get('items').controls;let i=index;">
+    <div [formGroupName]="i">
+      <div class="form-group">
+      <input type="text" class="fortextbox" formControlName="name" placeholder="Item name">
+    </div>
+    <div class="form-group">
+
+      <input type="text" class="fortextbox" formControlName="description" placeholder="Item Description">
+      </div>
+      <div class="form-group">
+        <input type="text" class="fortextbox" formControlName="price" placeholder="Item Price">
+        </div>
+    </div>
+    Choosen Name:{{addForm.controls.items.controls[i].controls.name.value}}
+  </div>
+  </form>
+  <button type="button" class="btn btn-success" (click)="addItem()"> Addnew</button> -->

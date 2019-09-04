@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GetpostService } from '../services/getpost.service';
-import { PaginationService } from '../services/pagination.service';
+import { GetpostService } from '../../services/getpost.service';
+import { PaginationService } from '../../services/pagination.service';
+import {AuthenticationService} from '../../services/authentication.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-deleted',
@@ -9,7 +11,7 @@ import { PaginationService } from '../services/pagination.service';
 })
 export class DeletedComponent implements OnInit {
 
-  constructor(private newService: GetpostService, private paginationservice: PaginationService) { }
+  constructor(private newService: GetpostService,private paginationservice: PaginationService) { }
   
   deldata;
   delUserData
@@ -19,6 +21,7 @@ export class DeletedComponent implements OnInit {
   pageno = 1;
 
   ngOnInit() {
+
     this.newService.getDeletedUser()
       .subscribe(data => {
         this.deldata = data;

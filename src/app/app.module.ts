@@ -7,21 +7,19 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GetpostService } from './services/getpost.service';
-import { DeletedComponent } from './deleted/deleted.component';
-import { AddnewComponent } from './addnew/addnew.component';
-import { SearchfilterPipe } from './services/searchfilter.pipe';
+import { LoginComponent } from './login/login.component';
+import { httpInterceptorProvider } from './services/interceptorConstants';
+
 @NgModule({
   declarations: [
     AppComponent,
-    DeletedComponent,
-    AddnewComponent,
-    SearchfilterPipe,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule
   ],
-  providers: [GetpostService],
+  providers: [GetpostService,httpInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,14 +1,15 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddnewComponent } from './addnew/addnew.component';
-import { DeletedComponent } from './deleted/deleted.component';
-
+import { AuthGuardGuard } from './service/auth-guard.guard';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {path:"",redirectTo:"/home",pathMatch:'full'},
-  {path:"home",component:AddnewComponent},
-  {path:"deleted",component:DeletedComponent},
-  {path:"lazymodule",loadChildren:'./lazy/lazy.module#LazyModule'}
+  {path:"login",component:LoginComponent},
+  {path:"home/user",loadChildren:'./dashboard/dashboard.module#DashboardModule',
+  canActivate:[AuthGuardGuard]
+},
+  {path:"**",redirectTo:"/login",pathMatch:'full'},
+
 ];
 
 @NgModule({
@@ -16,4 +17,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponent=[AddnewComponent,DeletedComponent];
