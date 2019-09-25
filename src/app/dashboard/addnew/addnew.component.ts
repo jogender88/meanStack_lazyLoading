@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GetpostService } from '../../services/getpost.service';
-import { FormBuilder,FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder,
+         FormArray, 
+         FormGroup, 
+         FormControl, 
+         Validators } from '@angular/forms';
 import { PaginationService } from '../../services/pagination.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
@@ -11,35 +15,30 @@ import { Router } from '@angular/router';
 })
 export class AddnewComponent implements OnInit {
 
-  constructor(private routes: Router,private fromBuilder:FormBuilder,private authenticationService:AuthenticationService, private newService: GetpostService, private paginationservice: PaginationService) { }
+  constructor(private routes: Router, private fromBuilder: FormBuilder, private authenticationService: AuthenticationService, private newService: GetpostService, private paginationservice: PaginationService) { }
+  
+  images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
+  
   Repdata: any;
   TotalUser: any;
   valbutton = "Save";
-  errorMessage;
+  errorMessage='';
   msgdata;
-  msg;
-  userForm:FormGroup;
+  msg='';
+  userForm: FormGroup;
   searchText: string = "";
   pager: any = {};
   pagedItems: any[];
   submitted = false;
   pageno = 1;
   isdisable = 0;
-  addForm:FormGroup;
-  items:FormArray;
+  addForm: FormGroup;
+  items: FormArray;
   ngOnInit() {
-    // this.addForm=this.fromBuilder.group({
-    //   customerName:'',
-    //   email:'',
-    //   items:this.fromBuilder.array([])
-    // });
-    // console.log(this.authenticationService.isLoggedIn());
-    // if (!this.authenticationService.isLoggedIn()) {
-    //   this.routes.navigate(['login'])
-    // }
+    this.counter();
+    
     this.newService.GetUser().subscribe(data => {
       this.Repdata = data;
-      // console.log(data)
       this.TotalUser = this.Repdata.data
       if (this.Repdata.statusCode == 200) {
         this.TotalUser = this.Repdata.data;
@@ -56,7 +55,7 @@ export class AddnewComponent implements OnInit {
       id: new FormControl(''),
       name: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
-      other:this.fromBuilder.array([]),
+      other: this.fromBuilder.array([]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phn: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(8)]),
     });
@@ -64,11 +63,11 @@ export class AddnewComponent implements OnInit {
 
   get f() { return this.userForm.controls; }
 
-  createItem():FormGroup{
+  createItem(): FormGroup {
     return this.fromBuilder.group({
-      itemName:'',
-      description:'',
-      price:''
+      itemName: '',
+      description: '',
+      price: ''
     });
   }
   // addItem(){
@@ -78,16 +77,16 @@ export class AddnewComponent implements OnInit {
   // removeItem(i){
   //   this.items.removeAt(i);
   //   }
-  addItem(){
-    this.items=this.userForm.get('other') as FormArray;
+  addItem() {
+    this.items = this.userForm.get('other') as FormArray;
     this.items.push(this.createItem());
   }
-  removeItem(i){
+  removeItem(i) {
     this.items.removeAt(i);
-    }
+  }
   onSave(user) {
     // console.log(user)
-    let token=localStorage.getItem('token');
+    let token = localStorage.getItem('token');
     user.mode = this.valbutton;
     this.submitted = true;
     this.isdisable = 0;
@@ -110,7 +109,7 @@ export class AddnewComponent implements OnInit {
               this.getUser()
               this.refreshform();
             }
-            if(this.msgdata.statusCode==401){
+            if (this.msgdata.statusCode == 401) {
               this.authenticationService.isLoggedIn();
             }
             else {
@@ -152,9 +151,10 @@ export class AddnewComponent implements OnInit {
         }
       }
         , error => {
-          
-          this.errorMessage = error});
-        
+
+          this.errorMessage = error
+        });
+
   }
 
   getUser() {
@@ -193,5 +193,57 @@ export class AddnewComponent implements OnInit {
     this.pageno = page;
     this.pager = this.paginationservice.getpager(this.TotalUser.length, page);
     this.pagedItems = this.TotalUser.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+  num: number = 0;
+  num1: number = 0;
+  num2: number = 0;
+  num3: number = 0;
+  num4: number = 0;
+
+  newNum: number;
+  studentNum:number;
+  courseNum;
+  awardNum;
+  expertNum;
+  option = {
+    startVal: this.num,
+    useEasing: true,
+    duration: 2,
+  };
+  interval: any;
+  currentView: string;
+
+
+  counter() {
+    this.newNum = 3000;
+    this.studentNum=10532;
+    this.courseNum=7984;
+    this.awardNum=82;
+    this.expertNum=354;
+    this.num = this.newNum;
+    this.num1 = this.studentNum;
+    this.num2 = this.courseNum;
+    this.num3 = this.awardNum;
+    this.num4 = this.expertNum;
+
+    const that = this;
+    this.interval = setInterval(()=> {
+      that.newNum += 1;
+      that.studentNum+=1;
+      that.courseNum+=1;
+      that.awardNum+=1;
+      that.expertNum+=1;
+
+      that.option = {
+        startVal: that.num,
+        useEasing: false,
+        duration: 160,};
+        
+      that.num = this.newNum;
+      that.num = this.studentNum;
+      that.num = this.courseNum;
+      that.num = this.awardNum;
+      that.num = this.expertNum;
+    }, 500000)
   }
 }

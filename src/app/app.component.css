@@ -4,7 +4,8 @@
     position: relative;
 }
 #back{
-    background-image: url("../assets/Images/back2.jpeg");
+    /* background-image: url("../assets/Images/back2.jpeg"); */
+    background: white;
     background-repeat: no-repeat;
     width: 100%;
     background-attachment: fixed;

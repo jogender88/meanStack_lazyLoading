@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetpostService } from '../../services/getpost.service';
 import { PaginationService } from '../../services/pagination.service';
-import {AuthenticationService} from '../../services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { from } from 'rxjs';
 
 @Component({
@@ -11,8 +11,8 @@ import { from } from 'rxjs';
 })
 export class DeletedComponent implements OnInit {
 
-  constructor(private newService: GetpostService,private paginationservice: PaginationService) { }
-  
+  constructor(private newService: GetpostService, private paginationservice: PaginationService) { }
+
   deldata;
   delUserData
   errorMessage;
@@ -27,8 +27,8 @@ export class DeletedComponent implements OnInit {
         this.deldata = data;
         if (this.deldata.statusCode == 200) {
           this.delUserData = this.deldata.data;
-        this.setPage(1)
-      }
+          this.setPage(1)
+        }
       });
   }
 
@@ -38,7 +38,8 @@ export class DeletedComponent implements OnInit {
         this.deldata = data;
         if (this.deldata.statusCode == 200) {
           this.delUserData = this.deldata.data;
-        this.setPage(this.pageno)}
+          this.setPage(this.pageno)
+        }
       });
   }
 
@@ -49,7 +50,7 @@ export class DeletedComponent implements OnInit {
       }
         , error => this.errorMessage = error);
   }
-  
+
   setPage(page: number) {
     this.pageno = page;
     this.pager = this.paginationservice.getpager(this.delUserData.length, page);

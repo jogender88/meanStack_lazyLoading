@@ -7,6 +7,7 @@ import { AuthenticationService } from './authentication.service';
 @Injectable()
 export class Interceptor implements HttpInterceptor {
     constructor(private authenticationService:AuthenticationService){}
+    
     intercept(request: HttpRequest<any>, next: HttpHandler) {
         if (localStorage.getItem('token') != null) {
             const token = localStorage.getItem('token');

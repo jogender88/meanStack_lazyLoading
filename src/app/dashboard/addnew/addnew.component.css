@@ -1,3 +1,6 @@
+.slider{
+  width: 100%;
+}
 input[type=text] {
     width: 100%;
     padding: 12px 20px;
@@ -6,9 +9,7 @@ input[type=text] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-/* label{
-    display: block !important;
-} */
+
 .table-striped>tbody>tr:nth-of-type(even){
     background-color: gainsboro;
 }
@@ -24,4 +25,88 @@ input[type=text] {
     -webkit-appearance: meter;
     background-color: #5bb85b;
     color: white;
+}
+.stat{
+    background: #121212;
+    padding-top: 10px;
+    color: #ccc;
+    background-attachment: fixed;
+}
+.stat i{
+    font-size: 50px;
+}
+.stat-items h2{
+    font-weight: bold;
+    font-size: 42px;
+    color: darkorange;
+}
+.stat p{
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+  /* new type card */
+
+.imgStyle{
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.15);
+  transition: all 0.25s ease-in;
+  border-bottom: 5px solid transparent;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 1px;
+}
+.imgStyle:hover {
+  transform: translateY(-5px);
+  border: none;
+  border-bottom: 5px solid #2196fe;
+}
+.imgStyle img {
+  width: 100%;
+  display: block;
+
+}
+.card-heading {
+  font-size: 18px;
+  margin-bottom: 10px;
+  line-height: 1.25;
+  margin-top: 0;
+}
+.styled-link {
+  text-decoration: none;
+  outline: none;
+  text-align: center;
+  margin-bottom: 2rem;
+
+  display: inline-block;
+  margin-left: 2rem;
+  letter-spacing: 2px;
+
+  color: #2196fe;
+  transition: all 0.25s ease-in; 
+}
+.styled-link:hover,
+.styled-link:focus,
+.styled-link:active {
+  color: #536dfe;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.mb-0 {
+  /* margin-bottom: 0; */
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+.py-2 {
+  padding: 10px 10px 10px 10px;
 }

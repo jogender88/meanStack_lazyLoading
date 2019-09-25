@@ -38,6 +38,10 @@ export class GetpostService {
     return this.http.post('http://localhost:8080/login/',user)
     // .pipe(map((response: Response)=> response.json()))
   }
+  signup(user){
+    return this.http.post('http://localhost:8080/signup/',user)
+    // .pipe(map((response: Response)=> response.json()))
+  }
   errorHandler(error:HttpErrorResponse){
     return Observable.throw(error.message)
   }

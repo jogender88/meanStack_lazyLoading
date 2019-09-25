@@ -9,19 +9,32 @@ import {DashboardComponent} from './dashboard.component'
 import {DeletedComponent} from './deleted/deleted.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchfilterPipe } from '../services/searchfilter.pipe';
+// import { FooterComponent } from './footer/footer.component';
+import { AgmCoreModule } from '@agm/core';
+import { CountUpModule } from 'countup.js-angular2';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 @NgModule({
   declarations: [
     DashboardComponent,
     HeaderComponent,
     AddnewComponent,
     DeletedComponent,
-    SearchfilterPipe
+    SearchfilterPipe,
+    // FooterComponent
   ],
 
   imports: [
     CommonModule,
-    DashboardRoutingModule,
-     HttpClientModule, FormsModule, ReactiveFormsModule
+    DashboardRoutingModule,NgbModule,
+     HttpClientModule, 
+     FormsModule,
+     CountUpModule, 
+     ReactiveFormsModule, 
+     AgmCoreModule.forRoot({
+      apiKey: ''
+    })
   ],
 })
 export class DashboardModule { }

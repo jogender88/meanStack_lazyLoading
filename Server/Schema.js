@@ -1,14 +1,28 @@
 var mongoose = require('mongoose');
-var otherSchema=new mongoose.Schema({
-        itemName: {
-            type: String
-        },
-        description: {
-            type: String
-        },
-        price: {
-            type: String
-        }
+const beautifyUnique = require('mongoose-beautiful-unique-validation');
+var userLoginSchema=new mongoose.Schema({
+    username:{
+        type:String,
+        required:true,
+        unique: true
+    },
+    password:{
+        type:String,
+        required:true
+    }
+});
+userLoginSchema.plugin(beautifyUnique);
+
+var otherSchema = new mongoose.Schema({
+    itemName: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    price: {
+        type: String
+    }
 })
 var UserSchema = new mongoose.Schema({
     name: {
@@ -35,4 +49,11 @@ var UserSchema = new mongoose.Schema({
 });
 
 var user = mongoose.model('users', UserSchema);
-module.exports = { user }
+var signup = mongoose.model('signin', userLoginSchema);
+module.exports = { user ,signup}
+                                                                                                                                                        
+// signin.schema.path('username').validate(function (value, respond) {                                                                                           
+//     signin.findOne({ username: value }, function (err, user) {                                                                                                
+//         if(user) respond(false);                                                                                                                         
+//     });                                                                                                                                                  
+// }, 'This username address is already registered');
